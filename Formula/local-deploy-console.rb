@@ -34,11 +34,8 @@ class LocalDeployConsole < Formula
     ENV["PORT"] = port.to_s
     pid = spawn bin/"local-deploy-console"
     begin
-      require "net/http"
-      uri = URI("http://127.0.0.1:#{port}/api/state")
-      response = retry_block { Net::HTTP.get_response(uri) }
-      assert_equal "200", response.code
-      assert_equal [], JSON.parse(response.body).fetch("targets")
+      body = shell_output("curl -fsS --retry 5 --retry-connrefused --retry-delay 1 http://127.0.0.1:#{port}/api/state")
+      assert_equal [], JSON.parse(body).fetch("targets")
     ensure
       Process.kill("TERM", pid)
       Process.wait(pid)
