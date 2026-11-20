@@ -2,8 +2,8 @@ class LocalDeployConsole < Formula
   desc "Local web console for deploying Kubernetes container images from Helm charts"
   homepage "https://github.com/CodingPenguin-yoon/local-deploy-console"
   url "https://github.com/CodingPenguin-yoon/local-deploy-console.git",
-      tag:      "v0.1.0",
-      revision: "3441d04be4056d569981d9c876bc0fc4d7ced074"
+      tag:      "v0.1.1",
+      revision: "c489079e65cc087bd89ea842f0bdd038018b6e6d"
   license "MIT"
 
   depends_on "git"
